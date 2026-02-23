@@ -23,6 +23,7 @@ global using Microsoft.Extensions.Caching.Hybrid;
 global using Microsoft.Extensions.Http.Resilience;
 global using MediatR;
 global using FluentResults;
+global using AutoBogus;
 global using Refit;
 global using Microsoft.Extensions.ServiceDiscovery;
 global using DotNet.Testcontainers.Containers;

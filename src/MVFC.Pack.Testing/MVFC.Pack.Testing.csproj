@@ -13,9 +13,9 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Testing</PackageProjectUrl>
-    <PackageTags>testing;xunit;fluentassertions;nsubstitute;bogus;testcontainers;dotnet</PackageTags>
+    <PackageTags>testing;xunit;fluentassertions;nsubstitute;bogus;autobogus;testcontainers;dotnet</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Testing</RepositoryUrl>
-    <Description>Metapackage para unificar as ferramentas essenciais para a escrita de testes automatizados unitários e integração no ecossistema .NET 10. Inclui xUnit, FluentAssertions, Bogus, NSubstitute e Testcontainers.</Description>
+    <Description>Metapackage para unificar as ferramentas essenciais para a escrita de testes automatizados unitários e integração no ecossistema .NET 10. Inclui xUnit, FluentAssertions, Bogus, AutoBogus, NSubstitute e Testcontainers.</Description>
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 
@@ -28,6 +28,7 @@
 	  <PackageReference Include="NSubstitute" />
 	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
 	  <PackageReference Include="Bogus" />
+	  <PackageReference Include="AutoBogus" />
 	  <PackageReference Include="Testcontainers" />
   </ItemGroup>
 

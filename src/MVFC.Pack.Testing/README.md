@@ -18,7 +18,7 @@ dotnet add package MVFC.Pack.Testing
 
 ## Como Usar
 
-Sendo um metapackage, ao instalá-lo no seu projeto de testes, todas as bibliotecas e frameworks necessários ficam imediatamente disponíveis. Ferramentas de testes (`xUnit`, `FluentAssertions`, `NSubstitute`, `Bogus`, `Testcontainers`) estarão prontas para ser importadas usando `using Namespace;` tranquilamente.
+Sendo um metapackage, ao instalá-lo no seu projeto de testes, todas as bibliotecas e frameworks necessários ficam imediatamente disponíveis. Ferramentas de testes (`xUnit`, `FluentAssertions`, `NSubstitute`, `Bogus`, `AutoBogus`, `Testcontainers`) estarão prontas para ser importadas usando `using Namespace;` tranquilamente.
 
 ---
 
@@ -36,13 +36,14 @@ Abaixo estão as bibliotecas inclusas neste pacote, bem como suas respectivas ve
 | NSubstitute | 5.3.0 |
 | Microsoft.AspNetCore.Mvc.Testing | 10.0.3 |
 | Bogus | 35.6.5 |
+| AutoBogus | 2.13.1 |
 | Testcontainers | 4.10.0 |
 
 ---
 
 ## Motivação
 
-Agilizar a escrita de testes desde o primeiro momento. Ele já monta um ecossistema com suporte à terceira versão do `xUnit`, o framework líder de mocks `NSubstitute`, dados fictícios realistas com `Bogus`, validações expressivas em inglês com `FluentAssertions` e provisionamento de infraestrutura descartável com `Testcontainers`.
+Agilizar a escrita de testes desde o primeiro momento. Ele já monta um ecossistema com suporte à terceira versão do `xUnit`, o framework líder de mocks `NSubstitute`, dados fictícios realistas com `Bogus` e gerações complexas com `AutoBogus` (AutoFaker), validações expressivas em inglês com `FluentAssertions` e provisionamento de infraestrutura descartável com `Testcontainers`.
 
 ---
 

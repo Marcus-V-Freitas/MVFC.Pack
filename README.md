@@ -117,6 +117,7 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 | NSubstitute | 5.3.0 |
 | Microsoft.AspNetCore.Mvc.Testing | 10.0.3 |
 | Bogus | 35.6.5 |
+| AutoBogus | 2.13.1 |
 | Testcontainers | 4.10.0 |
 
 ---
@@ -142,7 +143,7 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
   - Garantir qualidade, legibilidade e segurança no código C#. Esse grupo de analisadores força as melhores práticas durante as builds ou na própria IDE, evitando "code smells" tradicionais identificados pela comunidade (SonarAnalyzer, Roslynator e NetAnalyzers). Em suma, ele eleva a qualidade do código com inspeção contínua.
 
 - **`MVFC.Pack.Testing`**: 
-  - Agilizar a escrita de testes desde o primeiro momento. Ele já monta um ecossistema com suporte à terceira versão do `xUnit`, o framework líder de mocks `NSubstitute`, dados fictícios realistas com `Bogus`, validações expressivas em inglês com `FluentAssertions` e provisionamento de infraestrutura descartável com `Testcontainers`.
+  - Agilizar a escrita de testes desde o primeiro momento. Ele já monta um ecossistema com suporte à terceira versão do `xUnit`, o framework líder de mocks `NSubstitute`, dados fictícios realistas com `Bogus` e `AutoBogus` (AutoFaker), validações expressivas em inglês com `FluentAssertions` e provisionamento de infraestrutura descartável com `Testcontainers`.
 
 ---
 
