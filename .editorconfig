@@ -18,6 +18,7 @@ indent_size              = 4
 tab_width                = 4
 trim_trailing_whitespace = true
 insert_final_newline     = true
+trim_trailing_blank_lines = true
 max_line_length          = 140
 
 # ──────────────────────────────────────────────────────────
@@ -443,7 +444,15 @@ dotnet_diagnostic.S1186.severity = warning
 dotnet_diagnostic.S112.severity  = warning
 
 # ──────────────────────────────────────────────────────────
-# 14. ARQUIVOS GERADOS — sem análise
+# 14. ROSLYNATOR — principais
+# ──────────────────────────────────────────────────────────
+
+# Remover linhas em branco redundantes (inclusive no final do arquivo e dentro de blocos)
+dotnet_diagnostic.RCS1036.severity = warning
+dotnet_diagnostic.RCS1213.severity = warning
+
+# ──────────────────────────────────────────────────────────
+# 15. ARQUIVOS GERADOS — sem análise
 # ──────────────────────────────────────────────────────────
 [**/{obj,bin,publish,migrations}/**/*.cs]
 generated_code = true

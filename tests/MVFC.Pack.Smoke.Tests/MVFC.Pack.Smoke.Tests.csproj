@@ -11,6 +11,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\MVFC.Pack.Api\MVFC.Pack.Api.csproj" />
     <ProjectReference Include="..\..\src\MVFC.Pack.Cache\MVFC.Pack.Cache.csproj" />
+    <ProjectReference Include="..\..\src\MVFC.Pack.Domain\MVFC.Pack.Domain.csproj" />
+    <ProjectReference Include="..\..\src\MVFC.Pack.IoC\MVFC.Pack.IoC.csproj" />
+    <ProjectReference Include="..\..\src\MVFC.Pack.Observability\MVFC.Pack.Observability.csproj" />
     <ProjectReference Include="..\..\src\MVFC.Pack.Testing\MVFC.Pack.Testing.csproj" />
   </ItemGroup>
 

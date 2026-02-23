@@ -3,6 +3,9 @@
     <Project Path="src/MVFC.Pack.Analyzers/MVFC.Pack.Analyzers.csproj" />
     <Project Path="src/MVFC.Pack.Api/MVFC.Pack.Api.csproj" />
     <Project Path="src/MVFC.Pack.Cache/MVFC.Pack.Cache.csproj" />
+    <Project Path="src/MVFC.Pack.Domain/MVFC.Pack.Domain.csproj" />
+    <Project Path="src/MVFC.Pack.IoC/MVFC.Pack.IoC.csproj" />
+    <Project Path="src/MVFC.Pack.Observability/MVFC.Pack.Observability.csproj" />
     <Project Path="src/MVFC.Pack.Testing/MVFC.Pack.Testing.csproj" />
   </Folder>
   <Folder Name="/tests/">

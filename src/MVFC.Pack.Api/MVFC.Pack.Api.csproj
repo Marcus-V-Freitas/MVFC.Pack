@@ -20,15 +20,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Refit" />
-	  <PackageReference Include="Refit.HttpClientFactory" />
-	  <PackageReference Include="FluentValidation" />
-	  <PackageReference Include="FluentResults" />
 	  <PackageReference Include="Serilog.AspNetCore" />
+      <PackageReference Include="Serilog.Sinks.File" />
 	  <PackageReference Include="Serilog.Sinks.Console" />
-	  <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
 	  <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
 	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+      <PackageReference Include="Asp.Versioning.Http" />
+      <PackageReference Include="AspNetCore.Scalar" />
+      <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
   </ItemGroup>
 
   <ItemGroup>
