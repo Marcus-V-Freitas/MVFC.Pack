@@ -1,0 +1,23 @@
+﻿<Project>
+  <Target Name="CopyEditorConfigToSolutionRoot"
+          BeforeTargets="Build"
+          Condition="!Exists('$(SolutionDir).editorconfig')">
+
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)../.editorconfig"
+          DestinationFolder="$(SolutionDir)"
+          SkipUnchangedFiles="true" />
+
+    <Message Text="[MVFC] .editorconfig copiado para a raiz da solution: $(SolutionDir)"
+             Importance="high" />
+
+  </Target>
+
+  <Target Name="SkipEditorConfigCopy"
+          BeforeTargets="Build"
+          Condition="Exists('$(SolutionDir).editorconfig')">
+
+    <Message Text="[MVFC] .editorconfig já existe na raiz — nenhuma alteração feita."
+             Importance="normal" />
+
+  </Target>
+</Project>

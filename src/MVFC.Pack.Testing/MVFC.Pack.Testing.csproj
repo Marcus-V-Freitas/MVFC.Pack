@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Version>0.0.0</Version>
+    <Authors>Marcus Vinicius de Freitas Costa</Authors>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Testing</PackageProjectUrl>
+    <PackageTags>testing;xunit;fluentassertions;nsubstitute;bogus;testcontainers;dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Testing</RepositoryUrl>
+    <Description>Metapackage para unificar as ferramentas essenciais para a escrita de testes automatizados unitários e integração no ecossistema .NET 10. Inclui xUnit, FluentAssertions, Bogus, NSubstitute e Testcontainers.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="xunit.v3" />
+	  <PackageReference Include="xunit.v3.extensibility.core" />
+	  <PackageReference Include="xunit.runner.visualstudio" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" />
+	  <PackageReference Include="FluentAssertions" />
+	  <PackageReference Include="NSubstitute" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+	  <PackageReference Include="Bogus" />
+	  <PackageReference Include="Testcontainers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

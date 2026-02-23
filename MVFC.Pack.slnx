@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MVFC.Pack.Analyzers/MVFC.Pack.Analyzers.csproj" />
+    <Project Path="src/MVFC.Pack.Api/MVFC.Pack.Api.csproj" />
+    <Project Path="src/MVFC.Pack.Cache/MVFC.Pack.Cache.csproj" />
+    <Project Path="src/MVFC.Pack.Testing/MVFC.Pack.Testing.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MVFC.Pack.Smoke.Tests/MVFC.Pack.Smoke.Tests.csproj" />
+  </Folder>
+</Solution>

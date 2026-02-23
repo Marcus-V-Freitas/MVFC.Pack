@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Version>0.0.0</Version>
+    <Authors>Marcus Vinicius de Freitas Costa</Authors>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Cache</PackageProjectUrl>
+    <PackageTags>cache;redis;hybrid-cache;distributed-cache;dotnet</PackageTags>
+    <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Cache</RepositoryUrl>
+    <Description>Metapackage projetado para simplificar e padronizar a implementação de cache distribuído em aplicações .NET 10, combinando Redis e Hybrid Cache.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="StackExchange.Redis" />
+	  <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+	  <PackageReference Include="Microsoft.Extensions.Caching.Hybrid" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

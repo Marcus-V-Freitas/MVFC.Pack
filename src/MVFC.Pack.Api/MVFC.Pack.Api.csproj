@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Version>0.0.0</Version>
+    <Authors>Marcus Vinicius de Freitas Costa</Authors>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Api</PackageProjectUrl>
+    <PackageTags>api;dotnet;metapackage;refit;serilog;fluentvalidation;fluentresults;jwt;openapi</PackageTags>
+    <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Api</RepositoryUrl>
+    <Description>Metapackage para padronizar e acelerar o desenvolvimento de APIs no ecossistema .NET 10. Inclui ferramentas para resiliência (Refit), validação (FluentValidation), logs estruturados (Serilog) e segurança (JWT).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Refit" />
+	  <PackageReference Include="Refit.HttpClientFactory" />
+	  <PackageReference Include="FluentValidation" />
+	  <PackageReference Include="FluentResults" />
+	  <PackageReference Include="Serilog.AspNetCore" />
+	  <PackageReference Include="Serilog.Sinks.Console" />
+	  <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+	  <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
