@@ -58,5 +58,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Target Name="AddPlaceholderFile" BeforeTargets="_GetPackageFiles">
+    <Touch Files="$(IntermediateOutputPath)_._" AlwaysCreate="true" />
+    <ItemGroup>
+      <None Include="$(IntermediateOutputPath)_._" Pack="true" PackagePath="lib/$(TargetFramework)/_._" />
+    </ItemGroup>
+  </Target>
   
 </Project>
