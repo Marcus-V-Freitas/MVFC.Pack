@@ -4,7 +4,6 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsPackable>true</IsPackable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <Version>0.0.0</Version>
     <Authors>Marcus Vinicius de Freitas Costa</Authors>
@@ -18,6 +17,7 @@
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Analyzers</RepositoryUrl>
     <Description>Metapackage focado em garantir a qualidade, legibilidade e segurança no código C# através de análise estática contínua com SonarAnalyzer, Roslynator e NetAnalyzers.</Description>
     <NoDefaultExcludes>true</NoDefaultExcludes>
+    <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
