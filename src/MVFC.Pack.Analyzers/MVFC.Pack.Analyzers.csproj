@@ -17,6 +17,7 @@
     <PackageTags>analyzers;roslyn;sonar;code-quality;linting;csharp;dotnet</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Analyzers</RepositoryUrl>
     <Description>Metapackage focado em garantir a qualidade, legibilidade e segurança no código C# através de análise estática contínua com SonarAnalyzer, Roslynator e NetAnalyzers.</Description>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
   </PropertyGroup>
 
   <ItemGroup>
