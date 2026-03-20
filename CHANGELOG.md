@@ -1,6 +1,11 @@
-# Changelog
+﻿# Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [[3.0.2]] - 2026-03-20
+### Fixed
+- Fixed metapackage assets propagation to prevent consumer build conflicts.
+- Added placeholder files to metapackages to ensure valid NuGet package generation across target frameworks.
 
 ## [[3.0.1]] - 2026-03-20
 ### Fixed
@@ -41,6 +46,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Initial project files and repository structure.
 
+[3.0.2]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v2.0.1...v3.0.0
 [2.0.1]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v2.0.0...v2.0.1
