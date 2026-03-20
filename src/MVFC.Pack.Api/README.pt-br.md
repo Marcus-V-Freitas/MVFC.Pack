@@ -1,26 +1,27 @@
 ﻿# MVFC.Pack.Api
 
-> 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
+> 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](../../LICENSE)
 ![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
 ![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.Api)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Api)
 
-Metapackage for ASP.NET Core APIs — structured logging, OpenAPI docs, JWT auth,
-API versioning and Health Checks, all pinned and ready to use.
+Metapackage para APIs ASP.NET Core — logs estruturados, documentação OpenAPI, autenticação
+JWT, versionamento de API e Health Checks, com versões fixadas e pronto para uso.
 
-## Motivation
+## Motivação
 
-Building production-ready APIs in- .NET 9+
-means installing and wiring the same set of libraries
-every time: a logging sink, an OpenAPI provider, a JWT middleware, a versioning library and
-health check endpoints. Each with its own version to keep in sync.
+Construir APIs prontas para produção em .NET 9+
+significa instalar e configurar o mesmo conjunto
+de bibliotecas a cada novo projeto: um sink de log, um provedor OpenAPI, um middleware JWT,
+uma biblioteca de versionamento e endpoints de health check — cada um com sua própria versão
+para manter sincronizada.
 
-**MVFC.Pack.Api** installs all of them in a single reference and pins every version, so you
-start with a consistent, battle-tested API baseline from the first line of code.
+O **MVFC.Pack.Api** instala tudo em uma única referência e fixa cada versão, para que você
+comece com uma base de API consistente e testada desde a primeira linha de código.
 
-## Installation
+## Instalação
 
 ```sh
 dotnet add package MVFC.Pack.Api
@@ -29,7 +30,7 @@ dotnet add package MVFC.Pack.Api
 ## Quick Start
 
 ```csharp
-// Program.cs — everything is available after install, no extra packages needed
+// Program.cs — tudo disponível após a instalação, sem pacotes adicionais
 
 builder.Host.UseSerilog((ctx, cfg) =>
     cfg.ReadFrom.Configuration(ctx.Configuration));
@@ -58,9 +59,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-## Included Packages
+## Pacotes Inclusos
 
-| Package | Version |
+| Pacote | Versão |
 |---|---|
 | Serilog.AspNetCore | 10.0.0 |
 | Serilog.Sinks.File | 7.0.0 |
@@ -72,6 +73,6 @@ app.UseAuthorization();
 | Microsoft.Extensions.Diagnostics.HealthChecks | 10.0.3 |
 | AspNetCore.HealthChecks.UI.Client | 9.0.0 |
 
-## License
+## Licença
 
 [Apache-2.0](../../LICENSE)

@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Analyzers</PackageProjectUrl>
     <PackageTags>analyzers;roslyn;sonar;code-quality;linting;csharp;dotnet</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Analyzers</RepositoryUrl>
-    <Description>Metapackage focado em garantir a qualidade, legibilidade e segurança no código C# através de análise estática contínua com SonarAnalyzer, Roslynator e NetAnalyzers.</Description>
+    <Description>Metapackage focado em garantir a qualidade, legibilidade e segurança no código C# através de análise estática contínua com SonarAnalyzer, Roslynator e NetAnalyzers. Suporta .NET 9 e .NET 10.</Description>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>

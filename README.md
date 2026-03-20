@@ -1,57 +1,94 @@
-# MVFC.Pack
+﻿# MVFC.Pack
 
-## Sobre
+> 🇧🇷 [Leia em Português](README.pt-br.md)
 
-O **MVFC.Pack** é uma coleção de pacotes (metapackages) pensada para padronizar e acelerar o desenvolvimento de aplicações no ecossistema .NET 10. Ao invés de instalar as mesmas bibliotecas repetidamente em cada novo microsserviço ou projeto, você pode simplesmente referenciar os pacotes do MVFC.Pack de acordo com a sua necessidade. Eles garantem que as versões das dependências estejam sempre alinhadas e adotam as melhores ferramentas do mercado por padrão.
+[![CI](https://github.com/Marcus-V-Freitas/MVFC.Pack/actions/workflows/ci.yml/badge.svg)](https://github.com/Marcus-V-Freitas/MVFC.Pack/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
+[![NuGet](https://img.shields.io/nuget/v/MVFC.Pack.Api?label=MVFC.Pack.Api)](https://www.nuget.org/packages/MVFC.Pack.Api)
+
+A collection of opinionated metapackages to standardize and accelerate .NET 9 | 10 development.
+Instead of installing the same libraries repeatedly across every microservice or project,
+reference the MVFC.Pack package that matches your layer — versions are pinned and the best
+tooling is included by default.
+
+## Motivation
+
+In any multi-project organization, you inevitably face:
+
+- **Version drift**: different projects pulling incompatible versions of the same library.
+- **Bootstrapping tax**: every new service requires the same `dotnet add package` ritual.
+- **Inconsistency**: different developers choose different logging, validation or testing tools.
+
+**MVFC.Pack** eliminates this by providing a curated set of metapackages — one per layer —
+that lock versions, enforce tooling standards and get your project running immediately.
 
 ---
 
-## Instalação (NuGet)
+## Available Packages
 
-Você pode instalar os pacotes diretamente via CLI, utilizando o mesmo nome do projeto alvo. Escolha os pacotes que fazem sentido para o seu contexto:
+| Package | Service / Purpose | Downloads |
+|---|---|---|
+| [MVFC.Pack.Api](src/MVFC.Pack.Api/README.md) | Standardized ASP.NET Core API development | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Api) |
+| [MVFC.Pack.Domain](src/MVFC.Pack.Domain/README.md) | Domain layer abstractions (MediatR, Refit, Validation) | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Domain) |
+| [MVFC.Pack.IoC](src/MVFC.Pack.IoC/README.md) | IoC with source-generated scanning and resilience | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.IoC) |
+| [MVFC.Pack.Observability](src/MVFC.Pack.Observability/README.md) | Telemetry, metrics and service discovery | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Observability) |
+| [MVFC.Pack.Cache](src/MVFC.Pack.Cache/README.md) | Distributed caching (Redis + HybridCache) | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Cache) |
+| [MVFC.Pack.Analyzers](src/MVFC.Pack.Analyzers/README.md) | Static analysis for code quality | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Analyzers) |
+| [MVFC.Pack.Testing](src/MVFC.Pack.Testing/README.md) | Testing ecosystem (xUnit v3, FluentAssertions) | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Testing) |
 
-```bash
-# Para projetos de API (Serilog, OpenApi, JWT, HealthChecks...)
+---
+
+## Installation
+
+```sh
 dotnet add package MVFC.Pack.Api
-
-# Para camada de Domínio (Mediator, Refit, FluentValidation, FluentResults)
 dotnet add package MVFC.Pack.Domain
-
-# Para configuração de IoC (Mediator SourceGenerator, ServiceScan, DI)
 dotnet add package MVFC.Pack.IoC
-
-# Para Observabilidade (OpenTelemetry, Service Discovery, Resiliência)
 dotnet add package MVFC.Pack.Observability
-
-# Para configuração de Cache (Redis e Hybrid Cache)
 dotnet add package MVFC.Pack.Cache
-
-# Para padronização e análise de código (Linting/Analyzers)
 dotnet add package MVFC.Pack.Analyzers
-
-# Para projetos de Testes (Unitários/Integração)
 dotnet add package MVFC.Pack.Testing
 ```
 
 ---
 
-## Como Usar
-Como a maioria destes pacotes atua como *Metapackages* (agrupadores de dependências), o simples fato de você instalá-los no seu projeto já torna todas as bibliotecas e ferramentas subjacentes disponíveis para uso imediato em seu código, sem necessidade de referenciá-las individualmente no `.csproj`.
+## Quick Start
 
-- **Analisadores:** Ao instalar o pacote `MVFC.Pack.Analyzers`, os rulesets e analisadores (Sonar, Roslynator, etc.) já entram em ação automaticamente no seu editor, apontando melhorias no código durante o desenvolvimento.
-- **Bibliotecas:** As dependências do pacote de testes (`xUnit`, `FluentAssertions`, `Testcontainers`), APIs (`Serilog`, `OpenApi`, `JWT`), Domínio (`Mediator`, `Refit`, `FluentResults`) ou Cache (`Redis`) estarão prontas para ser importadas usando `using Namespace;` tranquilamente.
+Metapackages require no extra configuration — install and use:
+
+```csharp
+// MVFC.Pack.Api — Serilog, OpenApi, JWT, HealthChecks ready
+builder.Host.UseSerilog();
+builder.Services.AddOpenApi();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+       .AddJwtBearer();
+
+// MVFC.Pack.Testing — xUnit v3, FluentAssertions, NSubstitute, Testcontainers ready
+public class OrderServiceTests
+{
+    private readonly IOrderRepository _repo = Substitute.For<IOrderRepository>();
+
+    [Fact]
+    public async Task CreateOrder_ShouldReturnCreatedOrder()
+    {
+        var result = await _sut.CreateAsync(new CreateOrderRequest(...));
+        result.Should().NotBeNull();
+    }
+}
+
+// MVFC.Pack.Analyzers — SonarAnalyzer, Roslynator, Meziantou
+// activate automatically at build time, no code required.
+```
 
 ---
 
-## Pacotes Inclusos e Versões
-
-Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas versões fixadas no repositório.
-
----
+## Package Contents
 
 ### MVFC.Pack.Api
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | Serilog.AspNetCore | 10.0.0 |
 | Serilog.Sinks.File | 7.0.0 |
 | Serilog.Sinks.Console | 6.1.1 |
@@ -63,8 +100,9 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 | AspNetCore.HealthChecks.UI.Client | 9.0.0 |
 
 ### MVFC.Pack.Domain
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | MediatR | 12.5.0 |
 | Refit | 10.0.1 |
 | Refit.HttpClientFactory | 10.0.1 |
@@ -72,8 +110,9 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 | FluentValidation | 12.1.1 |
 
 ### MVFC.Pack.IoC
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | MediatR | 12.5.0 |
 | ServiceScan.SourceGenerator | 2.4.1 |
 | FluentValidation.DependencyInjectionExtensions | 12.1.1 |
@@ -81,8 +120,9 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 | Microsoft.Extensions.Http.Resilience | 10.3.0 |
 
 ### MVFC.Pack.Observability
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | Microsoft.Extensions.Http.Resilience | 10.3.0 |
 | Microsoft.Extensions.ServiceDiscovery | 10.3.0 |
 | OpenTelemetry.Exporter.OpenTelemetryProtocol | 1.15.0 |
@@ -92,23 +132,26 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 | OpenTelemetry.Instrumentation.Runtime | 1.15.0 |
 
 ### MVFC.Pack.Cache
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | StackExchange.Redis | 2.11.3 |
 | Microsoft.Extensions.Caching.StackExchangeRedis | 10.0.3 |
 | Microsoft.Extensions.Caching.Hybrid | 10.3.0 |
 
 ### MVFC.Pack.Analyzers
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | Microsoft.CodeAnalysis.NetAnalyzers | 10.0.103 |
 | SonarAnalyzer.CSharp | 10.19.0.132793 |
 | Roslynator.Analyzers | 4.15.0 |
 | Meziantou.Analyzer | 3.0.15 |
 
 ### MVFC.Pack.Testing
-| Pacote | Versão |
-| ------ | ------ |
+
+| Package | Version |
+|---|---|
 | xunit.v3 | 3.2.2 |
 | xunit.v3.extensibility.core | 3.2.2 |
 | xunit.runner.visualstudio | 3.1.5 |
@@ -122,30 +165,64 @@ Abaixo estão as bibliotecas inclusas em cada pacote, bem como suas respectivas 
 
 ---
 
-## Motivação de Cada Pacote
+## Package Purpose
 
-- **`MVFC.Pack.Api`**: 
-  - Centralizar toda a base para a criação de APIs ricas e robustas. Este pacote já traz ferramentas para logs estruturados (Serilog), documentação de rotas (OpenApi/Scalar), versionamento de API (Asp.Versioning), segurança com JWT e Health Checks padronizados.
-  
-- **`MVFC.Pack.Domain`**: 
-  - Padronizar a camada de domínio com abstrações do Mediator (CQRS), clientes HTTP declarativos (Refit), tratamento de erros sem exceções (FluentResults) e validação fluente de objetos (FluentValidation).
+- **`MVFC.Pack.Api`** — Structured logs (Serilog), API docs (OpenApi/Scalar), versioning
+  (Asp.Versioning), JWT auth and standardized Health Checks out of the box.
 
-- **`MVFC.Pack.IoC`**: 
-  - Centralizar a configuração de IoC com o Mediator (CQRS via Source Generator para máxima performance), registro automático de serviços (ServiceScan), integração do FluentValidation com DI e criação de clientes HTTP resilientes (HttpClientFactory + Polly).
+- **`MVFC.Pack.Domain`** — CQRS via MediatR, declarative HTTP clients (Refit), error handling
+  without exceptions (FluentResults) and fluent object validation (FluentValidation).
 
-- **`MVFC.Pack.Observability`**: 
-  - Entregar observabilidade completa com tracing distribuído, métricas e instrumentação automática (OpenTelemetry), resolução dinâmica de serviços (Service Discovery) e resiliência para chamadas HTTP. Essencial para microsserviços e arquiteturas cloud-native.
+- **`MVFC.Pack.IoC`** — Source-generated mediator registration for maximum performance,
+  automatic service scanning (ServiceScan), FluentValidation DI integration and resilient HTTP
+  clients via HttpClientFactory + Polly.
 
-- **`MVFC.Pack.Cache`**: 
-  - Entregar facilidade para implementação de cache distribuído em arquiteturas em nuvem (Redis), alinhado com as abstrações nativas do .NET e o uso flexível do novo Hybrid Cache.
+- **`MVFC.Pack.Observability`** — Full observability stack: distributed tracing, metrics,
+  automatic instrumentation (OpenTelemetry), dynamic service resolution (Service Discovery)
+  and HTTP resilience. Essential for microservices and cloud-native architectures.
 
-- **`MVFC.Pack.Analyzers`**: 
-  - Garantir qualidade, legibilidade e segurança no código C#. Esse grupo de analisadores força as melhores práticas durante as builds ou na própria IDE, evitando "code smells" tradicionais identificados pela comunidade (SonarAnalyzer, Roslynator e NetAnalyzers). Em suma, ele eleva a qualidade do código com inspeção contínua.
+- **`MVFC.Pack.Cache`** — Distributed cache with Redis (StackExchange), aligned with .NET
+  native abstractions and the new Hybrid Cache for flexible L1/L2 strategies.
 
-- **`MVFC.Pack.Testing`**: 
-  - Agilizar a escrita de testes desde o primeiro momento. Ele já monta um ecossistema com suporte à terceira versão do `xUnit`, o framework líder de mocks `NSubstitute`, dados fictícios realistas com `Bogus` e `AutoBogus` (AutoFaker), validações expressivas em inglês com `FluentAssertions` e provisionamento de infraestrutura descartável com `Testcontainers`.
+- **`MVFC.Pack.Analyzers`** — Continuous code quality enforcement at build time via
+  SonarAnalyzer, Roslynator and Meziantou.Analyzer. No configuration needed — rules activate
+  automatically.
+
+- **`MVFC.Pack.Testing`** — Full testing ecosystem: xUnit v3, NSubstitute, Bogus + AutoBogus
+  for realistic fake data, FluentAssertions for expressive assertions and Testcontainers for
+  disposable infrastructure.
 
 ---
 
-## Licença
-Este projeto é licenciado sob a licença **Apache License 2.0**. Consulte o arquivo [LICENSE](./LICENSE) para obter mais detalhes.
+## Project Structure
+
+```text
+src/
+  MVFC.Pack.Api/
+  MVFC.Pack.Domain/
+  MVFC.Pack.IoC/
+  MVFC.Pack.Observability/
+  MVFC.Pack.Cache/
+  MVFC.Pack.Analyzers/
+  MVFC.Pack.Testing/
+tests/
+  MVFC.Pack.Tests/
+```
+
+---
+
+## Requirements
+
+- .NET 9+
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## License
+
+[Apache-2.0](LICENSE)

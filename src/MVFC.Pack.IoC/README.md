@@ -1,47 +1,63 @@
-# MVFC.Pack.IoC
+﻿# MVFC.Pack.IoC
 
-## Sobre
+> 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
 
-O **MVFC.Pack.IoC** é um pacote (metapackage) para padronizar e acelerar a configuração de inversão de controle (IoC) em aplicações .NET 10. Ele centraliza as ferramentas essenciais para registro de serviços, mediação de comandos/queries e configuração de clientes HTTP.
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](../../LICENSE)
+![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
+![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.IoC)
+![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.IoC)
 
----
+Metapackage for Dependency Injection setup — source-generated mediator registration,
+automatic service scanning, FluentValidation DI integration and resilient HTTP clients.
 
-## Instalação (NuGet)
+## Motivation
 
-Você pode instalar o pacote diretamente via CLI:
+Configuring the IoC container in a modern- .NET 9+
+microservice involves the same repetitive
+steps: registering MediatR handlers, wiring FluentValidation into DI, scanning and
+registering services automatically, and building resilient HTTP clients with Polly.
 
-```bash
+**MVFC.Pack.IoC** centralizes all of this. The source generators activate at compile time —
+meaning zero reflection overhead at runtime — and the resilience pipeline follows the
+.NET standard patterns out of the box.
+
+## Installation
+
+```sh
 dotnet add package MVFC.Pack.IoC
 ```
 
----
+## Quick Start
 
-## Como Usar
+```csharp
+// 1. MediatR registration
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblyContaining<Program>());
 
-Sendo um metapackage, ao instalá-lo no seu projeto, todas as bibliotecas subjacentes ficam disponíveis para uso imediato em seu código, sem a necessidade de referenciá-las individualmente no `.csproj`. O Source Generator do Mediator e o ServiceScan serão ativados automaticamente no projeto consumidor.
+// 2. Automatic service scanning via ServiceScan source generator
+// Decorate your partial class and all matching services are registered at compile time
+[RegisterServices]
+public partial class ServiceRegistrar;
 
----
+// 3. FluentValidation DI integration
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
-## Pacotes Inclusos e Versões
+// 4. Resilient HTTP client with HttpClientFactory + Polly
+builder.Services.AddHttpClient<IPaymentApi>(client =>
+    client.BaseAddress = new Uri(builder.Configuration["PaymentApi:BaseUrl"]!))
+    .AddStandardResilienceHandler();
+```
 
-Abaixo estão as bibliotecas inclusas neste pacote, bem como suas respectivas versões.
+## Included Packages
 
-| Pacote | Versão |
-| ------ | ------ |
+| Package | Version |
+|---|---|
 | MediatR | 12.5.0 |
 | ServiceScan.SourceGenerator | 2.4.1 |
 | FluentValidation.DependencyInjectionExtensions | 12.1.1 |
 | Microsoft.Extensions.Http | 10.0.3 |
 | Microsoft.Extensions.Http.Resilience | 10.3.0 |
 
----
+## License
 
-## Motivação
-
-Centralizar a configuração de IoC com o MediatR (CQRS), registro automático de serviços (ServiceScan), integração do FluentValidation com DI e criação de clientes HTTP resilientes (HttpClientFactory + Polly).
-
----
-
-## Licença
-
-Este projeto é licenciado sob a licença **Apache License 2.0**. Consulte o arquivo [LICENSE](../../LICENSE) para obter mais detalhes.
+[Apache-2.0](../../LICENSE)

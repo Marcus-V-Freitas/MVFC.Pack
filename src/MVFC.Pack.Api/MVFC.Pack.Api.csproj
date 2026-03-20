@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Api</PackageProjectUrl>
     <PackageTags>api;dotnet;metapackage;refit;serilog;fluentvalidation;fluentresults;jwt;openapi</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Api</RepositoryUrl>
-    <Description>Metapackage para padronizar e acelerar o desenvolvimento de APIs no ecossistema .NET 10. Inclui ferramentas para resiliência (Refit), validação (FluentValidation), logs estruturados (Serilog) e segurança (JWT).</Description>
+    <Description>Metapackage para padronizar e acelerar o desenvolvimento de APIs no ecossistema .NET 9 | 10. Inclui ferramentas para resiliência (Refit), validação (FluentValidation), logs estruturados (Serilog) e segurança (JWT).</Description>
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 

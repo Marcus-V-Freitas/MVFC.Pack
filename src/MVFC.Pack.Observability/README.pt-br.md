@@ -1,27 +1,28 @@
 ﻿# MVFC.Pack.Observability
 
-> 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
+> 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](../../LICENSE)
 ![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
 ![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.Observability)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Observability)
 
-Metapackage for observability — distributed tracing, metrics, automatic instrumentation
-via OpenTelemetry, service discovery and HTTP resilience. Essential for microservices
-and cloud-native architectures.
+Metapackage para observabilidade — tracing distribuído, métricas, instrumentação automática
+via OpenTelemetry, service discovery e resiliência HTTP. Essencial para microsserviços e
+aplicações distribuídas.
 
-## Motivation
+## Motivação
 
-In cloud-native and microservices architectures, observability is not optional. You need
-distributed traces to follow a request across services, runtime metrics to detect memory
-pressure or thread pool exhaustion, and resilient HTTP clients to tolerate transient failures.
+Em arquiteturas cloud-native e de microsserviços, observabilidade não é opcional. Você precisa
+de traces distribuídos para acompanhar uma requisição entre serviços, métricas de runtime
+para detectar pressão de memória ou esgotamento de thread pool, e clientes HTTP resilientes
+para tolerar falhas transitórias.
 
-Each of these requires its own set of packages, versions and configuration boilerplate.
-**MVFC.Pack.Observability** ships the full OpenTelemetry instrumentation stack, service
-discovery and HTTP resilience as a single, version-locked reference.
+Cada um desses requisitos exige seu próprio conjunto de pacotes, versões e boilerplate de
+configuração. O **MVFC.Pack.Observability** entrega o stack completo de instrumentação
+OpenTelemetry, service discovery e resiliência HTTP em uma única referência com versões fixadas.
 
-## Installation
+## Instalação
 
 ```sh
 dotnet add package MVFC.Pack.Observability
@@ -48,9 +49,9 @@ builder.Services.ConfigureHttpClientDefaults(http =>
         .AddStandardResilienceHandler());
 ```
 
-## Included Packages
+## Pacotes Inclusos
 
-| Package | Version |
+| Pacote | Versão |
 |---|---|
 | Microsoft.Extensions.Http.Resilience | 10.3.0 |
 | Microsoft.Extensions.ServiceDiscovery | 10.3.0 |
@@ -60,6 +61,6 @@ builder.Services.ConfigureHttpClientDefaults(http =>
 | OpenTelemetry.Instrumentation.Http | 1.15.0 |
 | OpenTelemetry.Instrumentation.Runtime | 1.15.0 |
 
-## License
+## Licença
 
 [Apache-2.0](../../LICENSE)

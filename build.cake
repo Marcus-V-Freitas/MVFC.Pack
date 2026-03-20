@@ -10,6 +10,7 @@ Task("Clean")
 {
     Information("Limpando pastas de resultados e relatórios...");
     CleanDirectory("./TestResults");
+    CleanDirectory("./coverage");
     CleanDirectory("./CoverageReport");
 });
 
@@ -17,54 +18,100 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    Information("Restaurando pacotes dotnet...");
-    StartProcess("dotnet", "restore");
+    Information("Restaurando pacotes...");
+    var exitCode = StartProcess("dotnet", "restore MVFC.Pack.slnx");
+
+    if (exitCode != 0)
+    {
+        throw new Exception($"dotnet restore falhou ({exitCode})");
+    }
 });
 
 Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-    Information("Build do solution (Release)...");
-    StartProcess("dotnet", "build --configuration Release");
+    Information("Build Release...");
+    var exitCode = StartProcess("dotnet", "build MVFC.Pack.slnx --configuration Release --no-restore");
+
+    if (exitCode != 0)
+    {
+        throw new Exception($"dotnet build falhou ({exitCode})");
+    }
 });
 
 Task("Test-Coverage")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    var solution = "./MVFC.Pack.slnx";
-    var resultsDir = "./TestResults";
-    var reportDir = "./CoverageReport";
+    var testProject = "./tests/MVFC.Pack.Smoke.Tests/MVFC.Pack.Smoke.Tests.csproj";
+    var resultsDir  = "./coverage";
+    var reportDir   = "./CoverageReport";
+    var coverageXml = $"{resultsDir}/coverage.cobertura.xml";
 
-    Information("Executando testes e coletando cobertura (coverlet.collector)...");
-    StartProcess("dotnet", $"test \"{solution}\" --configuration Release --no-build --collect:\"XPlat Code Coverage\" --results-directory \"{resultsDir}\"");
+    Information("Limpando pasta de cobertura...");
+    CleanDirectory(resultsDir);
 
-    var reports = GetFiles("./TestResults/**/coverage.cobertura.xml");
+    var coverageToolExe    = "./tools/dotnet-coverage";
+    var coverageToolExeWin = "./tools/dotnet-coverage.exe";
+
+    if (!FileExists(coverageToolExe) && !FileExists(coverageToolExeWin))
+    {
+        Information("Instalando dotnet-coverage em ./tools...");
+        var installCode = StartProcess("dotnet", "tool install --tool-path ./tools dotnet-coverage --ignore-failed-sources");
+
+        if (installCode != 0)
+        {
+            throw new Exception($"Instalação do dotnet-coverage falhou ({installCode})");
+        }
+    }
+
+    var coverageToolPath = FileExists(coverageToolExeWin) ? coverageToolExeWin : coverageToolExe;
+
+    Information("Executando testes com cobertura (dotnet-coverage)...");
+
+    // dotnet-coverage collect monitors child processes, which is essential for Aspire integration tests
+    var testArgs = $"test \"{testProject}\" --configuration Release --no-build --logger \"trx;LogFileName=test-results.trx\"";
+    var collectArgs = $"collect --output-format cobertura --output \"{coverageXml}\" \"dotnet {testArgs}\"";
+    var exitCode = StartProcess(coverageToolPath, collectArgs);
+
+    if (exitCode != 0)
+    {
+        throw new Exception($"dotnet-coverage falhou ({exitCode})");
+    }
+
+    var reports = GetFiles(coverageXml);
+
     if (reports == null || reports.Count == 0)
     {
-        Warning("Nenhum arquivo de cobertura encontrado em './TestResults'.");
-        return;
+        throw new Exception("Nenhum arquivo de cobertura encontrado após os testes.");
     }
 
-    var reportGeneratorExe = "./tools/reportgenerator";
+    var reportGeneratorExe    = "./tools/reportgenerator";
     var reportGeneratorExeWin = "./tools/reportgenerator.exe";
+
     if (!FileExists(reportGeneratorExe) && !FileExists(reportGeneratorExeWin))
     {
-        Information("Instalando dotnet-reportgenerator-globaltool em ./tools...");
-        StartProcess("dotnet", "tool install --tool-path ./tools dotnet-reportgenerator-globaltool");
+        Information("Instalando ReportGenerator em ./tools...");
+        var installCode = StartProcess("dotnet", "tool install --tool-path ./tools dotnet-reportgenerator-globaltool");
+
+        if (installCode != 0)
+        {
+            throw new Exception($"Instalação do ReportGenerator falhou ({installCode})");
+        }
     }
 
-    var reportArgs = string.Empty;
-    foreach (var f in reports)
+    var reportArgs = string.Join(";", reports.Select(f => f.FullPath));
+    var rgPath     = FileExists(reportGeneratorExeWin) ? reportGeneratorExeWin : reportGeneratorExe;
+
+    Information("Gerando relatório HTML...");
+    var rgCode = StartProcess(rgPath, $"-reports:\"{reportArgs}\" -targetdir:\"{reportDir}\" -reporttypes:\"Html;Cobertura;MarkdownSummaryGithub\" -assemblyfilters:\"+MVFC.Pack*\" -classfilters:\"-*.Tests.*;-*.Playground.*\"");
+
+    if (rgCode != 0)
     {
-        reportArgs = string.IsNullOrEmpty(reportArgs)
-            ? f.FullPath
-            : reportArgs + ";" + f.FullPath;
+        throw new Exception($"ReportGenerator falhou ({rgCode})");
     }
 
-    var rgPath = FileExists(reportGeneratorExeWin) ? reportGeneratorExeWin : reportGeneratorExe;
-    StartProcess(rgPath, $"-reports:\"{reportArgs}\" -targetdir:\"{reportDir}\" -reporttypes:HtmlInline_AzurePipelines");
     Information($"Relatório gerado em: {reportDir}");
 });
 

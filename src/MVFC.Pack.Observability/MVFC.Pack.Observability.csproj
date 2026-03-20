@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -15,7 +15,7 @@
     <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Observability</PackageProjectUrl>
     <PackageTags>observability;opentelemetry;service-discovery;resilience;tracing;metrics;dotnet</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Observability</RepositoryUrl>
-    <Description>Metapackage para padronizar a observabilidade em aplicações .NET 10. Inclui OpenTelemetry (tracing, métricas, runtime), Service Discovery e resiliência HTTP.</Description>
+    <Description>Metapackage para padronizar a observabilidade em aplicações .NET 9 | 10. Inclui OpenTelemetry (tracing, métricas, runtime), Service Discovery e resiliência HTTP.</Description>
     <IncludeSymbols>false</IncludeSymbols>
   </PropertyGroup>
 

@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="AutoBogus" />
+    <PackageReference Include="Testcontainers" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\MVFC.Pack.Api\MVFC.Pack.Api.csproj" />
     <ProjectReference Include="..\..\src\MVFC.Pack.Cache\MVFC.Pack.Cache.csproj" />
     <ProjectReference Include="..\..\src\MVFC.Pack.Domain\MVFC.Pack.Domain.csproj" />

@@ -1,27 +1,28 @@
 ﻿# MVFC.Pack.Cache
 
-> 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
+> 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](../../LICENSE)
 ![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
 ![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.Cache)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Cache)
 
-Metapackage for distributed cache — Redis via StackExchange and the new .NET Hybrid Cache
-for flexible L1 (in-memory) / L2 (Redis) strategies.
+Metapackage para cache distribuído — Redis via StackExchange e o novo Hybrid Cache do .NET
+para estratégias flexíveis L1 (in-memory) / L2 (Redis).
 
-## Motivation
+## Motivação
 
-Implementing distributed cache in cloud applications means wiring Redis, aligning it with
-.NET's native `IDistributedCache` abstraction, and deciding between a pure Redis approach
-or a two-tier L1/L2 strategy. The new `HybridCache` in- .NET 9+
- solves the stampede problem
-and removes the need for custom locking patterns, but it still needs to be properly wired up.
+Implementar cache distribuído em aplicações cloud significa configurar o Redis, alinhá-lo
+à abstração nativa `IDistributedCache` do .NET, e decidir entre uma abordagem pura de Redis
+ou uma estratégia em dois níveis L1/L2. O novo `HybridCache` no .NET 9+
+ resolve o problema
+de thundering herd e elimina a necessidade de padrões manuais de lock, mas ainda precisa ser
+configurado corretamente.
 
-**MVFC.Pack.Cache** ships all three cache packages together, pinned, so you can choose
-between pure Redis or Hybrid Cache without any additional dependencies.
+O **MVFC.Pack.Cache** entrega os três pacotes de cache juntos, com versões fixadas, para que
+você escolha entre Redis puro ou Hybrid Cache sem dependências adicionais.
 
-## Installation
+## Instalação
 
 ```sh
 dotnet add package MVFC.Pack.Cache
@@ -30,23 +31,23 @@ dotnet add package MVFC.Pack.Cache
 ## Quick Start
 
 ```csharp
-// Option A — pure Redis
+// Opção A — Redis puro
 builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration.GetConnectionString("Redis"));
 
-// Option B — Hybrid Cache (L1 in-memory + L2 Redis)
+// Opção B — Hybrid Cache (L1 in-memory + L2 Redis)
 builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration.GetConnectionString("Redis"));
 builder.Services.AddHybridCache(options =>
 {
     options.DefaultEntryOptions = new HybridCacheEntryOptions
     {
-        Expiration         = TimeSpan.FromMinutes(10),
+        Expiration           = TimeSpan.FromMinutes(10),
         LocalCacheExpiration = TimeSpan.FromMinutes(2)
     };
 });
 
-// Usage with HybridCache — built-in stampede protection, no manual locking needed
+// Uso com HybridCache — proteção contra thundering herd nativa, sem lock manual
 public class ProductService(IHybridCache cache, IProductRepository repo)
 {
     public async Task<Product?> GetAsync(Guid id, CancellationToken ct)
@@ -57,14 +58,14 @@ public class ProductService(IHybridCache cache, IProductRepository repo)
 }
 ```
 
-## Included Packages
+## Pacotes Inclusos
 
-| Package | Version |
+| Pacote | Versão |
 |---|---|
 | StackExchange.Redis | 2.11.3 |
 | Microsoft.Extensions.Caching.StackExchangeRedis | 10.0.3 |
 | Microsoft.Extensions.Caching.Hybrid | 10.3.0 |
 
-## License
+## Licença
 
 [Apache-2.0](../../LICENSE)

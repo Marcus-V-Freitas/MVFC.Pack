@@ -1,26 +1,26 @@
 ﻿# MVFC.Pack.Testing
 
-> 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
+> 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](../../LICENSE)
 ![Platform](https://img.shields.io/badge/.NET-9%20%7C%2010-blue)
 ![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.Testing)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Testing)
 
-Metapackage for unit and integration testing — xUnit v3, NSubstitute, Bogus, AutoBogus,
-FluentAssertions and Testcontainers, all pinned and ready.
+Metapackage para testes unitários e de integração — xUnit v3, NSubstitute, Bogus, AutoBogus,
+FluentAssertions e Testcontainers, com versões fixadas e prontos para uso.
 
-## Motivation
+## Motivação
 
-Writing tests from the first commit requires the same ecosystem every time: a test framework,
-a mocking library, a fake-data generator, an assertion library with readable failure messages,
-and a way to spin up real infrastructure (databases, brokers) without managing Docker Compose
-files manually.
+Escrever testes desde o primeiro commit exige o mesmo ecossistema a cada vez: um framework
+de testes, uma biblioteca de mocks, um gerador de dados fictícios, uma biblioteca de asserções
+com mensagens de falha legíveis, e uma forma de subir infraestrutura real (bancos, brokers)
+sem gerenciar arquivos Docker Compose manualmente.
 
-**MVFC.Pack.Testing** ships all of them, pinned to compatible versions, so your test project
-is productive from the moment the package is installed.
+O **MVFC.Pack.Testing** entrega tudo isso, com versões compatíveis fixadas, para que seu
+projeto de testes seja produtivo desde o momento da instalação do pacote.
 
-## Installation
+## Instalação
 
 ```sh
 dotnet add package MVFC.Pack.Testing
@@ -29,7 +29,7 @@ dotnet add package MVFC.Pack.Testing
 ## Quick Start
 
 ```csharp
-// 1. Unit test with NSubstitute + FluentAssertions
+// 1. Teste unitário com NSubstitute + FluentAssertions
 public class OrderServiceTests
 {
     private readonly IOrderRepository _repo = Substitute.For<IOrderRepository>();
@@ -42,14 +42,14 @@ public class OrderServiceTests
     {
         _repo.SaveAsync(Arg.Any<Order>()).Returns(Guid.NewGuid());
 
-        var result = await _sut.CreateAsync(new CreateOrderRequest("Keyboard", 1));
+        var result = await _sut.CreateAsync(new CreateOrderRequest("Teclado", 1));
 
         result.Should().NotBeEmpty();
         await _repo.Received(1).SaveAsync(Arg.Any<Order>());
     }
 }
 
-// 2. Fake data with Bogus
+// 2. Dados fictícios com Bogus
 var faker = new Faker<Order>()
     .RuleFor(o => o.Id,      f => f.Random.Guid())
     .RuleFor(o => o.Product, f => f.Commerce.ProductName())
@@ -57,10 +57,10 @@ var faker = new Faker<Order>()
 
 var orders = faker.Generate(10);
 
-// 3. AutoBogus — generate fully populated objects automatically
+// 3. AutoBogus — gera objetos totalmente populados automaticamente
 var order = AutoFaker.Generate<Order>();
 
-// 4. Integration test with Testcontainers — real MongoDB, no mocks
+// 4. Teste de integração com Testcontainers — MongoDB real, sem mocks
 public class OrderRepositoryTests : IAsyncLifetime
 {
     private readonly MongoDbContainer _mongo = new MongoDbBuilder().Build();
@@ -83,9 +83,9 @@ public class OrderRepositoryTests : IAsyncLifetime
 }
 ```
 
-## Included Packages
+## Pacotes Inclusos
 
-| Package | Version |
+| Pacote | Versão |
 |---|---|
 | xunit.v3 | 3.2.2 |
 | xunit.v3.extensibility.core | 3.2.2 |
@@ -98,6 +98,6 @@ public class OrderRepositoryTests : IAsyncLifetime
 | AutoBogus | 2.13.1 |
 | Testcontainers | 4.10.0 |
 
-## License
+## Licença
 
 [Apache-2.0](../../LICENSE)
