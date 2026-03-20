@@ -17,6 +17,7 @@
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Testing</RepositoryUrl>
     <Description>Metapackage para unificar as ferramentas essenciais para a escrita de testes automatizados unitários e integração no ecossistema .NET 9 | 10. Inclui xUnit, FluentAssertions, Bogus, AutoBogus, NSubstitute e Testcontainers.</Description>
     <IncludeSymbols>false</IncludeSymbols>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddPlaceholderFile</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,10 +50,12 @@
     <None Include="icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
-  <Target Name="AddPlaceholderFile" BeforeTargets="_GetPackageFiles">
+  <Target Name="AddPlaceholderFile">
     <Touch Files="$(IntermediateOutputPath)_._" AlwaysCreate="true" />
     <ItemGroup>
-      <None Include="$(IntermediateOutputPath)_._" Pack="true" PackagePath="lib/$(TargetFramework)/_._" />
+      <TfmSpecificPackageFile Include="$(IntermediateOutputPath)_._">
+        <PackagePath>lib/$(TargetFramework)</PackagePath>
+      </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>
 
