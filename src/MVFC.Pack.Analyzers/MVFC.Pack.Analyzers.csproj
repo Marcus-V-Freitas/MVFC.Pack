@@ -60,10 +60,11 @@
     </Content>
   </ItemGroup>
 
-  <Target Name="AddPlaceholderFile" BeforeTargets="_GetPackageFiles">
+  <Target Name="AddPlaceholderFiles" BeforeTargets="_GetPackageFiles">
     <Touch Files="$(IntermediateOutputPath)_._" AlwaysCreate="true" />
     <ItemGroup>
-      <None Include="$(IntermediateOutputPath)_._" Pack="true" PackagePath="lib/$(TargetFramework)/_._" />
+      <_PlaceholderTfm Include="$(TargetFrameworks)" />
+      <None Include="$(IntermediateOutputPath)_._" Pack="true" PackagePath="lib/%(_PlaceholderTfm.Identity)/" />
     </ItemGroup>
   </Target>
   
