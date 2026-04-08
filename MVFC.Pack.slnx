@@ -1,4 +1,4 @@
-<Solution>
+﻿<Solution>
   <Folder Name="/src/">
     <Project Path="src/MVFC.Pack.Analyzers/MVFC.Pack.Analyzers.csproj" />
     <Project Path="src/MVFC.Pack.Api/MVFC.Pack.Api.csproj" />

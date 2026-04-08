@@ -1,11 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <Version>0.0.0</Version>
     <Authors>Marcus Vinicius de Freitas Costa</Authors>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -21,15 +18,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Serilog.AspNetCore" />
-      <PackageReference Include="Serilog.Sinks.File" />
-	  <PackageReference Include="Serilog.Sinks.Console" />
-	  <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-      <PackageReference Include="Asp.Versioning.Http" />
-      <PackageReference Include="AspNetCore.Scalar" />
-      <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
-      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
+	<PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.File" />
+	<PackageReference Include="Serilog.Sinks.Console" />
+	<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Asp.Versioning.Http" />
+    <PackageReference Include="AspNetCore.Scalar" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
   </ItemGroup>
 
   <ItemGroup>
