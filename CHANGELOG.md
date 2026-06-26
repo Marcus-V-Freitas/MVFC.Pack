@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.1] - 2026-06-26
+
+### Changed
+
+- Updated metapackage versions to their latest stable releases
+
 ## [4.0.0] - 2026-04-07
 
 ### Added
@@ -117,6 +123,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[4.0.1]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.3...v4.0.0
 [3.0.3]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.1...v3.0.2
