@@ -21,8 +21,8 @@ public sealed class RefitClientTests
     public void Refit_Should_Register_Client_Via_DI()
     {
         var services = new ServiceCollection();
-        services.AddRefitClient<ISampleApi>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.example.com"));
+        services.AddRefitGeneratedClient<ISampleApi>()
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.example.com"));
 
         using var provider = services.BuildServiceProvider();
         var client = provider.GetService<ISampleApi>();
@@ -34,7 +34,7 @@ public sealed class RefitClientTests
     public void Refit_Should_Register_Client_With_Custom_Settings()
     {
         var services = new ServiceCollection();
-        services.AddRefitClient<ISampleApi>(new RefitSettings
+        services.AddRefitGeneratedClient<ISampleApi>(new RefitSettings
         {
             ContentSerializer = new SystemTextJsonContentSerializer()
         })
@@ -50,7 +50,7 @@ public sealed class RefitClientTests
     public void Refit_Should_Register_Client_With_Resilience()
     {
         var services = new ServiceCollection();
-        services.AddRefitClient<ISampleApi>()
+        services.AddRefitGeneratedClient<ISampleApi>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.example.com"))
             .AddStandardResilienceHandler();
 

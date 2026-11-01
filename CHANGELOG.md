@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.2] - 2026-11-01
+
+### Changed
+
+- Updated central package versions to their latest stable releases and pinned .NET 9 dependencies.
+- Updated Refit smoke test client registrations to `AddRefitGeneratedClient` to align with Refit v16+.
+
+### Fixed
+
+- Fixed `.editorconfig` copy path in `MVFC.Pack.Analyzers.targets`.
+
+---
+
 ## [4.0.1] - 2026-06-26
 
 ### Changed
@@ -123,6 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[4.0.2]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.3...v4.0.0
 [3.0.3]: https://github.com/Marcus-V-Freitas/MVFC.Pack/compare/v3.0.2...v3.0.3

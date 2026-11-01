@@ -3,7 +3,7 @@
           BeforeTargets="Build"
           Condition="!Exists('$(SolutionDir).editorconfig')">
 
-    <Copy SourceFiles="$(MSBuildThisFileDirectory)../.editorconfig"
+    <Copy SourceFiles="$(MSBuildThisFileDirectory).editorconfig"
           DestinationFolder="$(SolutionDir)"
           SkipUnchangedFiles="true" />
 
