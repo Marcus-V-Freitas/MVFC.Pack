@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Domain
+# MVFC.Pack.Domain
 
 > 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
 
@@ -7,19 +7,17 @@
 ![NuGet Version](https://img.shields.io/nuget/v/MVFC.Pack.Domain)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Domain)
 
-Metapackage for the Domain / Application layer — CQRS mediator, declarative HTTP clients,
-error handling without exceptions and fluent object validation, all pinned.
+Metapackage for the Domain / Application layer — CQRS mediator, error handling without exceptions,
+and fluent object validation, all pinned.
 
 ## Motivation
 
-A solid domain layer in- .NET 9+
-requires the same set of tools in every project: a CQRS
-mediator to decouple commands from handlers, a declarative HTTP client to call external
-services, a result type to propagate errors without throwing exceptions, and a validation
-library to enforce business rules before any logic runs.
+A solid domain layer in .NET 9+ requires the same set of tools in every project: a CQRS
+mediator to decouple commands from handlers, a result type to propagate errors without throwing
+exceptions, and a validation library to enforce business rules before any logic runs.
 
-**MVFC.Pack.Domain** pins and ships all four in a single reference, so your domain layer
-starts consistent and testable from day one.
+**MVFC.Pack.Domain** pins and ships these core tools in a single reference, so your domain layer
+starts consistent and testable from day one. (For typed HTTP clients, see `MVFC.Pack.HttpClient`).
 
 ## Installation
 
@@ -39,14 +37,7 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, Result<Gui
         => Task.FromResult(Result.Ok(Guid.NewGuid()));
 }
 
-// 2. Declarative HTTP client with Refit
-public interface IPaymentApi
-{
-    [Post("/payments")]
-    Task<ApiResponse<PaymentResult>> ChargeAsync(ChargeRequest request, CancellationToken ct);
-}
-
-// 3. Fluent validation
+// 2. Fluent validation
 public class CreateOrderValidator : AbstractValidator<CreateOrderCommand>
 {
     public CreateOrderValidator()
@@ -56,7 +47,7 @@ public class CreateOrderValidator : AbstractValidator<CreateOrderCommand>
     }
 }
 
-// 4. Result pattern — no exceptions for business errors
+// 3. Result pattern — no exceptions for business errors
 var result = await mediator.Send(new CreateOrderCommand(customerId, 99.90m));
 if (result.IsFailed)
     return Results.BadRequest(result.Errors.Select(e => e.Message));
@@ -69,10 +60,8 @@ return Results.Created($"/orders/{result.Value}", null);
 | Package | Version |
 |---|---|
 | MediatR | 12.5.0 |
-| Refit | 10.0.1 |
-| Refit.HttpClientFactory | 10.0.1 |
 | FluentResults | 4.0.0 |
-| FluentValidation | 12.1.1 |
+| FluentValidation | 12.2.0 |
 
 ## License
 

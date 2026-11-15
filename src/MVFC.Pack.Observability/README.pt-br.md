@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Observability
+# MVFC.Pack.Observability
 
 > 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
@@ -8,19 +8,16 @@
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Observability)
 
 Metapackage para observabilidade — tracing distribuído, métricas, instrumentação automática
-via OpenTelemetry, service discovery e resiliência HTTP. Essencial para microsserviços e
-aplicações distribuídas.
+via OpenTelemetry e service discovery. Essencial para microsserviços e aplicações distribuídas.
 
 ## Motivação
 
 Em arquiteturas cloud-native e de microsserviços, observabilidade não é opcional. Você precisa
 de traces distribuídos para acompanhar uma requisição entre serviços, métricas de runtime
-para detectar pressão de memória ou esgotamento de thread pool, e clientes HTTP resilientes
-para tolerar falhas transitórias.
+para detectar pressão de memória ou esgotamento de thread pool, e resolução dinâmica de serviços entre contêineres.
 
-Cada um desses requisitos exige seu próprio conjunto de pacotes, versões e boilerplate de
-configuração. O **MVFC.Pack.Observability** entrega o stack completo de instrumentação
-OpenTelemetry, service discovery e resiliência HTTP em uma única referência com versões fixadas.
+O **MVFC.Pack.Observability** entrega o stack completo de instrumentação OpenTelemetry e service
+discovery em uma única referência com versões fixadas. (Para resiliência HTTP, consulte `MVFC.Pack.HttpClient`).
 
 ## Instalação
 
@@ -45,21 +42,19 @@ builder.Services.AddOpenTelemetry()
 builder.Services.AddServiceDiscovery();
 
 builder.Services.ConfigureHttpClientDefaults(http =>
-    http.AddServiceDiscovery()
-        .AddStandardResilienceHandler());
+    http.AddServiceDiscovery());
 ```
 
 ## Pacotes Inclusos
 
 | Pacote | Versão |
 |---|---|
-| Microsoft.Extensions.Http.Resilience | 10.3.0 |
-| Microsoft.Extensions.ServiceDiscovery | 10.3.0 |
-| OpenTelemetry.Exporter.OpenTelemetryProtocol | 1.15.0 |
-| OpenTelemetry.Extensions.Hosting | 1.15.0 |
-| OpenTelemetry.Instrumentation.AspNetCore | 1.15.0 |
-| OpenTelemetry.Instrumentation.Http | 1.15.0 |
-| OpenTelemetry.Instrumentation.Runtime | 1.15.0 |
+| Microsoft.Extensions.ServiceDiscovery | 9.5.2 (net9) / 10.11.0 (net10) / 11.0.0 (net11) |
+| OpenTelemetry.Exporter.OpenTelemetryProtocol | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Extensions.Hosting | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.AspNetCore | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.Http | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.Runtime | 1.20.1 (net9) / 1.21.0 (net10/11) |
 
 ## Licença
 

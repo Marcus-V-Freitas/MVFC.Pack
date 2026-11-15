@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Cache
+# MVFC.Pack.Cache
 
 > 🇧🇷 [Leia em Português](README.pt-br.md) · [← Back to MVFC.Pack](../../README.md)
 
@@ -61,9 +61,9 @@ public class ProductService(IHybridCache cache, IProductRepository repo)
 
 | Package | Version |
 |---|---|
-| StackExchange.Redis | 2.11.3 |
-| Microsoft.Extensions.Caching.StackExchangeRedis | 10.0.3 |
-| Microsoft.Extensions.Caching.Hybrid | 10.3.0 |
+| StackExchange.Redis | 3.4.35 |
+| Microsoft.Extensions.Caching.StackExchangeRedis | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Microsoft.Extensions.Caching.Hybrid | 10.11.0 (net9/10) / 11.0.0 (net11) |
 
 ## License
 

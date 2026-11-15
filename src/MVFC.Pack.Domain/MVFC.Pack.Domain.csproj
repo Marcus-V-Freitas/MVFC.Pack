@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net10.0;net11.0</TargetFrameworks>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <Authors>Marcus Vinicius de Freitas Costa</Authors>
     <RepositoryType>git</RepositoryType>
@@ -10,17 +10,15 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://www.nuget.org/packages/MVFC.Pack.Domain</PackageProjectUrl>
-    <PackageTags>domain;mediator;refit;fluentvalidation;fluentresults;dotnet</PackageTags>
+    <PackageTags>domain;mediator;fluentvalidation;fluentresults;dotnet</PackageTags>
     <RepositoryUrl>https://github.com/Marcus-V-Freitas/MVFC.Pack.Domain</RepositoryUrl>
-    <Description>Metapackage para padronizar e acelerar o desenvolvimento de camadas de domínio em aplicações .NET 9 | 10. Inclui Mediator Abstractions, Refit, FluentValidation e FluentResults.</Description>
+    <Description>Metapackage para padronizar e acelerar o desenvolvimento de camadas de domínio em aplicações .NET 9+. Inclui Mediator Abstractions, FluentValidation e FluentResults.</Description>
     <IncludeSymbols>false</IncludeSymbols>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);AddPlaceholderFile</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" />
-    <PackageReference Include="Refit" />
-    <PackageReference Include="Refit.HttpClientFactory" />
     <PackageReference Include="FluentResults" />
     <PackageReference Include="FluentValidation" />
   </ItemGroup>

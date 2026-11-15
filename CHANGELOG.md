@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.0] - 2026-11-15
+
+### Added
+
+- **`MVFC.Pack.HttpClient`**: New metapackage providing a dedicated, cohesive composition for typed HTTP clients (`Refit` + `Refit.HttpClientFactory`), `IHttpClientFactory` (`Microsoft.Extensions.Http`), and Polly resilience pipelines (`Microsoft.Extensions.Http.Resilience`).
+
+### Changed (Breaking Changes)
+
+- **`MVFC.Pack.Domain`**: Removed `Refit` and `Refit.HttpClientFactory` dependencies. Domain layer is now strictly focused on CQRS abstractions (`MediatR`), error handling (`FluentResults`), and validation (`FluentValidation`). Consumers requiring declarative HTTP clients must now reference `MVFC.Pack.HttpClient`.
+- **`MVFC.Pack.IoC`**: Removed `Microsoft.Extensions.Http` and `Microsoft.Extensions.Http.Resilience` dependencies. IoC is now focused on source-generated mediator registration, compile-time service scanning (`ServiceScan`), and validation DI. Consumers requiring HTTP client registration and resilience must reference `MVFC.Pack.HttpClient`.
+- **`MVFC.Pack.Observability`**: Removed `Microsoft.Extensions.Http.Resilience` dependency. Observability is now focused on OpenTelemetry (tracing, metrics, runtime) and Service Discovery.
+- Reorganized smoke test suites to align test coverage with each metapackage's dedicated responsibilities.
+- Updated central package dependencies and documentation across all metapackages.
+- Updated and standardized repository, package, and documentation navigation links across all README files.
+
+---
+
 ## [4.0.2] - 2026-11-01
 
 ### Changed

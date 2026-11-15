@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Testing
+# MVFC.Pack.Testing
 
 > 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
@@ -87,16 +87,16 @@ public class OrderRepositoryTests : IAsyncLifetime
 
 | Pacote | Versão |
 |---|---|
-| xunit.v3 | 3.2.2 |
-| xunit.v3.extensibility.core | 3.2.2 |
-| xunit.runner.visualstudio | 3.1.5 |
-| Microsoft.NET.Test.Sdk | 18.0.1 |
+| xunit.v3 | 4.0.3 |
+| xunit.v3.extensibility.core | 4.0.3 |
+| xunit.runner.visualstudio | 4.0.1 |
+| Microsoft.NET.Test.Sdk | 18.12.0 |
 | FluentAssertions | 7.0.0 |
-| NSubstitute | 5.3.0 |
-| Microsoft.AspNetCore.Mvc.Testing | 10.0.3 |
+| NSubstitute | 6.2.0 |
+| Microsoft.AspNetCore.Mvc.Testing | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
 | Bogus | 35.6.5 |
 | AutoBogus | 2.13.1 |
-| Testcontainers | 4.10.0 |
+| Testcontainers | 4.16.0 |
 
 ## Licença
 

@@ -1,4 +1,4 @@
-﻿namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.Domain;
+namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.HttpClient;
 
 public sealed class RefitTests
 {

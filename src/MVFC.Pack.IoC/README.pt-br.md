@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.IoC
+# MVFC.Pack.IoC
 
 > 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
@@ -8,18 +8,16 @@
 ![NuGet Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.IoC)
 
 Metapackage para configuração de Injeção de Dependência — registro do mediator via Source
-Generator, varredura automática de serviços, integração do FluentValidation com DI e
-clientes HTTP resilientes.
+Generator, varredura automática de serviços e integração do FluentValidation com DI.
 
 ## Motivação
 
-Configurar o container IoC em um microsserviço .NET moderno envolve os mesmos passos
-repetitivos: registrar handlers do MediatR, integrar o FluentValidation ao DI, varrer e
-registrar serviços automaticamente, e construir clientes HTTP resilientes com Polly.
+Configurar o container IoC em um microsserviço .NET 9+ moderno envolve passos repetitivos
+essenciais: registrar handlers do MediatR, integrar o FluentValidation ao DI e varrer e
+registrar serviços automaticamente em tempo de compilação sem custos de reflection.
 
-O **MVFC.Pack.IoC** centraliza tudo isso. Os source generators ativam em tempo de compilação
-— zero overhead de reflection em runtime — e o pipeline de resiliência segue os padrões
-nativos do- .NET 9+
+O **MVFC.Pack.IoC** centraliza essas configurações. Os source generators ativam em tempo de compilação
+— zero overhead de reflection em runtime. (Para clientes HTTP resilientes e HttpClientFactory, consulte `MVFC.Pack.HttpClient`).
 
 ## Instalação
 
@@ -41,11 +39,6 @@ public partial class ServiceRegistrar;
 
 // 3. Integração do FluentValidation com DI
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-
-// 4. Cliente HTTP resiliente com HttpClientFactory + Polly
-builder.Services.AddHttpClient<IPaymentApi>(client =>
-    client.BaseAddress = new Uri(builder.Configuration["PaymentApi:BaseUrl"]!))
-    .AddStandardResilienceHandler();
 ```
 
 ## Pacotes Inclusos
@@ -53,10 +46,8 @@ builder.Services.AddHttpClient<IPaymentApi>(client =>
 | Pacote | Versão |
 |---|---|
 | MediatR | 12.5.0 |
-| ServiceScan.SourceGenerator | 2.4.1 |
-| FluentValidation.DependencyInjectionExtensions | 12.1.1 |
-| Microsoft.Extensions.Http | 10.0.3 |
-| Microsoft.Extensions.Http.Resilience | 10.3.0 |
+| ServiceScan.SourceGenerator | 3.2.2 |
+| FluentValidation.DependencyInjectionExtensions | 12.2.0 |
 
 ## Licença
 

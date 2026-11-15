@@ -7,7 +7,6 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,7 +22,10 @@ env:
 
 jobs:
   test-and-coverage:
-    if: github.event_name != 'push'
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.user.login == 'Marcus-V-Freitas' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-22.04
     timeout-minutes: 30
     permissions:
@@ -36,12 +38,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup .NET 9 e 10
+      - name: Setup .NET 9 / 10 / 11
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
             9.0.x
             10.0.x
+            11.0.x
 
       - name: Restaurar ferramentas .NET com versões fixadas
         run: dotnet tool restore
@@ -62,7 +65,6 @@ jobs:
       - name: Comentário de cobertura no PR (PR interno)
         if: >-
           success() &&
-          github.event_name == 'pull_request' &&
           github.event.pull_request.head.repo.full_name == github.repository
         uses: marocchino/sticky-pull-request-comment@v2
         with:
@@ -79,7 +81,7 @@ jobs:
           fail_ci_if_error: true
 
   build-and-publish:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     environment: release
@@ -97,18 +99,19 @@ jobs:
       - name: Confirmar que a tag pertence à main
         shell: bash
         run: |
-          git fetch --no-tags origin main
-          git merge-base --is-ancestor HEAD origin/main || {
-            echo "::error::A tag precisa apontar para um commit presente na main."
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          if ! git merge-base --is-ancestor HEAD refs/remotes/origin/main; then
+            echo "::error::A tag não aponta para um commit presente na main."
             exit 1
-          }
+          fi
 
-      - name: Setup .NET 9 e 10
+      - name: Setup .NET 9 / 10 / 11
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
             9.0.x
             10.0.x
+            11.0.x
 
       - name: Restaurar ferramentas .NET com versões fixadas
         run: dotnet tool restore
@@ -199,7 +202,7 @@ jobs:
           done
 
   create-release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     needs: build-and-publish
     runs-on: ubuntu-22.04
     permissions:

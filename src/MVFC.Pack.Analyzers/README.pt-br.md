@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Analyzers
+# MVFC.Pack.Analyzers
 
 > 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
@@ -59,10 +59,10 @@ list.Where(x => x > 0);              // ✅ correto
 
 | Pacote | Versão |
 |---|---|
-| Microsoft.CodeAnalysis.NetAnalyzers | 10.0.103 |
-| SonarAnalyzer.CSharp | 10.19.0.132793 |
-| Roslynator.Analyzers | 4.15.0 |
-| Meziantou.Analyzer | 3.0.15 |
+| Microsoft.CodeAnalysis.NetAnalyzers | 11.0.100 |
+| SonarAnalyzer.CSharp | 10.36.0.15337 |
+| Roslynator.Analyzers | 5.0.1 |
+| Meziantou.Analyzer | 3.0.341 |
 
 ## Licença
 

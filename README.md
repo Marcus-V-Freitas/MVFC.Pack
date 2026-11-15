@@ -1,4 +1,4 @@
-﻿# MVFC.Pack
+# MVFC.Pack
 
 > 🇧🇷 [Leia em Português](README.pt-br.md)
 
@@ -31,6 +31,7 @@ that lock versions, enforce tooling standards and get your project running immed
 |---|---|---|
 | [MVFC.Pack.Api](src/MVFC.Pack.Api/README.md) | Standardized ASP.NET Core API development | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Api) |
 | [MVFC.Pack.Domain](src/MVFC.Pack.Domain/README.md) | Domain layer abstractions (MediatR, Refit, Validation) | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Domain) |
+| [MVFC.Pack.HttpClient](src/MVFC.Pack.HttpClient/README.md) | Typed HTTP clients with Refit, HttpClientFactory and resilience | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.HttpClient) |
 | [MVFC.Pack.IoC](src/MVFC.Pack.IoC/README.md) | IoC with source-generated scanning and resilience | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.IoC) |
 | [MVFC.Pack.Observability](src/MVFC.Pack.Observability/README.md) | Telemetry, metrics and service discovery | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Observability) |
 | [MVFC.Pack.Cache](src/MVFC.Pack.Cache/README.md) | Distributed caching (Redis + HybridCache) | ![Downloads](https://img.shields.io/nuget/dt/MVFC.Pack.Cache) |
@@ -44,6 +45,7 @@ that lock versions, enforce tooling standards and get your project running immed
 ```sh
 dotnet add package MVFC.Pack.Api
 dotnet add package MVFC.Pack.Domain
+dotnet add package MVFC.Pack.HttpClient
 dotnet add package MVFC.Pack.IoC
 dotnet add package MVFC.Pack.Observability
 dotnet add package MVFC.Pack.Cache
@@ -92,11 +94,11 @@ public class OrderServiceTests
 | Serilog.AspNetCore | 10.0.0 |
 | Serilog.Sinks.File | 7.0.0 |
 | Serilog.Sinks.Console | 6.1.1 |
-| Microsoft.AspNetCore.OpenApi | 10.0.3 |
-| Microsoft.AspNetCore.Authentication.JwtBearer | 10.0.3 |
-| Asp.Versioning.Http | 8.1.1 |
+| Microsoft.AspNetCore.OpenApi | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Microsoft.AspNetCore.Authentication.JwtBearer | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Asp.Versioning.Http | 10.2.3 |
 | AspNetCore.Scalar | 1.2.0 |
-| Microsoft.Extensions.Diagnostics.HealthChecks | 10.0.3 |
+| Microsoft.Extensions.Diagnostics.HealthChecks | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
 | AspNetCore.HealthChecks.UI.Client | 9.0.0 |
 
 ### MVFC.Pack.Domain
@@ -104,64 +106,68 @@ public class OrderServiceTests
 | Package | Version |
 |---|---|
 | MediatR | 12.5.0 |
-| Refit | 10.0.1 |
-| Refit.HttpClientFactory | 10.0.1 |
+| FluentValidation | 12.2.0 |
 | FluentResults | 4.0.0 |
-| FluentValidation | 12.1.1 |
+
+### MVFC.Pack.HttpClient
+
+| Package | Version |
+|---|---|
+| Refit | 8.0.0 (net9) / 16.4.0 (net10/11) |
+| Refit.HttpClientFactory | 8.0.0 (net9) / 16.4.0 (net10/11) |
+| Microsoft.Extensions.Http | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Microsoft.Extensions.Http.Resilience | 9.2.0 (net9) / 10.11.0 (net10) / 11.0.0 (net11) |
 
 ### MVFC.Pack.IoC
 
 | Package | Version |
 |---|---|
 | MediatR | 12.5.0 |
-| ServiceScan.SourceGenerator | 2.4.1 |
-| FluentValidation.DependencyInjectionExtensions | 12.1.1 |
-| Microsoft.Extensions.Http | 10.0.3 |
-| Microsoft.Extensions.Http.Resilience | 10.3.0 |
+| ServiceScan.SourceGenerator | 3.2.2 |
+| FluentValidation.DependencyInjectionExtensions | 12.2.0 |
 
 ### MVFC.Pack.Observability
 
 | Package | Version |
 |---|---|
-| Microsoft.Extensions.Http.Resilience | 10.3.0 |
-| Microsoft.Extensions.ServiceDiscovery | 10.3.0 |
-| OpenTelemetry.Exporter.OpenTelemetryProtocol | 1.15.0 |
-| OpenTelemetry.Extensions.Hosting | 1.15.0 |
-| OpenTelemetry.Instrumentation.AspNetCore | 1.15.0 |
-| OpenTelemetry.Instrumentation.Http | 1.15.0 |
-| OpenTelemetry.Instrumentation.Runtime | 1.15.0 |
+| Microsoft.Extensions.ServiceDiscovery | 9.5.2 (net9) / 10.11.0 (net10) / 11.0.0 (net11) |
+| OpenTelemetry.Exporter.OpenTelemetryProtocol | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Extensions.Hosting | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.AspNetCore | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.Http | 1.20.1 (net9) / 1.21.0 (net10/11) |
+| OpenTelemetry.Instrumentation.Runtime | 1.20.1 (net9) / 1.21.0 (net10/11) |
 
 ### MVFC.Pack.Cache
 
 | Package | Version |
 |---|---|
-| StackExchange.Redis | 2.11.3 |
-| Microsoft.Extensions.Caching.StackExchangeRedis | 10.0.3 |
-| Microsoft.Extensions.Caching.Hybrid | 10.3.0 |
+| StackExchange.Redis | 3.4.35 |
+| Microsoft.Extensions.Caching.StackExchangeRedis | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Microsoft.Extensions.Caching.Hybrid | 10.11.0 (net9/10) / 11.0.0 (net11) |
 
 ### MVFC.Pack.Analyzers
 
 | Package | Version |
 |---|---|
-| Microsoft.CodeAnalysis.NetAnalyzers | 10.0.103 |
-| SonarAnalyzer.CSharp | 10.19.0.132793 |
-| Roslynator.Analyzers | 4.15.0 |
-| Meziantou.Analyzer | 3.0.15 |
+| Microsoft.CodeAnalysis.NetAnalyzers | 11.0.100 |
+| SonarAnalyzer.CSharp | 10.36.0.15337 |
+| Roslynator.Analyzers | 5.0.1 |
+| Meziantou.Analyzer | 3.0.341 |
 
 ### MVFC.Pack.Testing
 
 | Package | Version |
 |---|---|
-| xunit.v3 | 3.2.2 |
-| xunit.v3.extensibility.core | 3.2.2 |
-| xunit.runner.visualstudio | 3.1.5 |
-| Microsoft.NET.Test.Sdk | 18.0.1 |
+| xunit.v3 | 4.0.3 |
+| xunit.v3.extensibility.core | 4.0.3 |
+| xunit.runner.visualstudio | 4.0.1 |
+| Microsoft.NET.Test.Sdk | 18.12.0 |
 | FluentAssertions | 7.0.0 |
-| NSubstitute | 5.3.0 |
-| Microsoft.AspNetCore.Mvc.Testing | 10.0.3 |
+| NSubstitute | 6.2.0 |
+| Microsoft.AspNetCore.Mvc.Testing | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
 | Bogus | 35.6.5 |
 | AutoBogus | 2.13.1 |
-| Testcontainers | 4.10.0 |
+| Testcontainers | 4.16.0 |
 
 ---
 
@@ -170,16 +176,18 @@ public class OrderServiceTests
 - **`MVFC.Pack.Api`** — Structured logs (Serilog), API docs (OpenApi/Scalar), versioning
   (Asp.Versioning), JWT auth and standardized Health Checks out of the box.
 
-- **`MVFC.Pack.Domain`** — CQRS via MediatR, declarative HTTP clients (Refit), error handling
-  without exceptions (FluentResults) and fluent object validation (FluentValidation).
+- **`MVFC.Pack.Domain`** — CQRS via MediatR, error handling without exceptions (FluentResults)
+  and fluent object validation (FluentValidation).
+
+- **`MVFC.Pack.HttpClient`** — Typed HTTP clients via Refit and HttpClientFactory combined with standard
+  Polly resilience pipelines (retry, circuit breaker, rate limiting).
 
 - **`MVFC.Pack.IoC`** — Source-generated mediator registration for maximum performance,
-  automatic service scanning (ServiceScan), FluentValidation DI integration and resilient HTTP
-  clients via HttpClientFactory + Polly.
+  automatic service scanning (ServiceScan) and FluentValidation DI integration.
 
 - **`MVFC.Pack.Observability`** — Full observability stack: distributed tracing, metrics,
-  automatic instrumentation (OpenTelemetry), dynamic service resolution (Service Discovery)
-  and HTTP resilience. Essential for microservices and cloud-native architectures.
+  automatic instrumentation (OpenTelemetry) and dynamic service resolution (Service Discovery).
+  Essential for microservices and cloud-native architectures.
 
 - **`MVFC.Pack.Cache`** — Distributed cache with Redis (StackExchange), aligned with .NET
   native abstractions and the new Hybrid Cache for flexible L1/L2 strategies.
@@ -200,6 +208,7 @@ public class OrderServiceTests
 src/
   MVFC.Pack.Api/
   MVFC.Pack.Domain/
+  MVFC.Pack.HttpClient/
   MVFC.Pack.IoC/
   MVFC.Pack.Observability/
   MVFC.Pack.Cache/

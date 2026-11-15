@@ -1,78 +1,94 @@
-﻿<Project>
+<Project>
   <PropertyGroup>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>    
+    <Net11Version>11.0.0</Net11Version>
+    <Net10Version>[10.0.14]</Net10Version>
+    <Net9Version>[9.0.2]</Net9Version>
+    <NewOpenTelemetry>1.21.0</NewOpenTelemetry>
+    <OldOpenTelemetry>[1.20.1]</OldOpenTelemetry>
   </PropertyGroup>
   <ItemGroup Label="Build">
     <PackageVersion Include="MinVer" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup Label="API">
-    <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Serilog.AspNetCore" Version="[9.0.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageVersion Include="Serilog.Sinks.File" Version="7.0.0" />
     <PackageVersion Include="Serilog.Sinks.Console" Version="6.1.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Asp.Versioning.Http" Version="10.2.3" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Asp.Versioning.Http" Version="10.2.3" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Asp.Versioning.Http" Version="10.2.3" />
     <PackageVersion Include="AspNetCore.Scalar" Version="1.2.0" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
   </ItemGroup>
   <ItemGroup Label="Cache">
-    <PackageVersion Include="StackExchange.Redis" Version="3.4.29" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.Hybrid" Version="10.11.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Caching.Hybrid" Version="10.11.0" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="StackExchange.Redis" Version="3.4.35" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Hybrid" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Caching.Hybrid" Version="[10.11.0]" Condition="'$(TargetFramework)' != 'net11.0'" />
   </ItemGroup>
   <ItemGroup Label="Testing">
-    <PackageVersion Include="xunit.v3" Version="4.0.2" />
-    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.2" />
+    <PackageVersion Include="xunit.v3" Version="4.0.3" />
+    <PackageVersion Include="xunit.v3.extensibility.core" Version="4.0.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.12.0" />
     <PackageVersion Include="FluentAssertions" Version="[7.0.0]" />
     <PackageVersion Include="NSubstitute" Version="6.2.0" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
     <PackageVersion Include="Bogus" Version="35.6.5" />
     <PackageVersion Include="AutoBogus" Version="2.13.1" />
     <PackageVersion Include="Testcontainers" Version="4.16.0" />
   </ItemGroup>
   <ItemGroup Label="Analyzers">
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.403" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.403" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.35.0.4138" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="11.0.100" />
+    <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.36.0.15337" />
     <PackageVersion Include="Roslynator.Analyzers" Version="5.0.1" />
-    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.320" />
+    <PackageVersion Include="Meziantou.Analyzer" Version="3.0.341" />
   </ItemGroup>
   <ItemGroup Label="Observability">
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.11.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.11.0" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.20.1" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.20.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.20.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.20.1" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.20.1" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="[10.11.0]" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="[9.5.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(NewOpenTelemetry)" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OldOpenTelemetry)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(NewOpenTelemetry)" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OldOpenTelemetry)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(NewOpenTelemetry)" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OldOpenTelemetry)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(NewOpenTelemetry)" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OldOpenTelemetry)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(NewOpenTelemetry)" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OldOpenTelemetry)" Condition="'$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
   <ItemGroup Label="Domain">
     <PackageVersion Include="MediatR" Version="[12.5.0]" />
-    <PackageVersion Include="Refit" Version="16.4.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Refit" Version="[8.0.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Refit.HttpClientFactory" Version="16.4.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Refit.HttpClientFactory" Version="[8.0.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
     <PackageVersion Include="FluentValidation" Version="12.2.0" />
     <PackageVersion Include="FluentResults" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup Label="HttpClient">
+    <PackageVersion Include="Refit" Version="16.4.0" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="Refit" Version="[8.0.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Refit.HttpClientFactory" Version="16.4.0" Condition="'$(TargetFramework)' != 'net9.0'" />
+    <PackageVersion Include="Refit.HttpClientFactory" Version="[8.0.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="$(Net10Version)" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="$(Net9Version)" Condition="'$(TargetFramework)' == 'net9.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="$(Net11Version)" Condition="'$(TargetFramework)' == 'net11.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="[10.11.0]" Condition="'$(TargetFramework)' == 'net10.0'" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="[9.2.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
   <ItemGroup Label="IoC">
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.2.0" />
     <PackageVersion Include="ServiceScan.SourceGenerator" Version="3.2.2" />
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.14" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="[9.0.2]" Condition="'$(TargetFramework)' == 'net9.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.11.0" Condition="'$(TargetFramework)' == 'net10.0'" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="[9.2.0]" Condition="'$(TargetFramework)' == 'net9.0'" />
   </ItemGroup>
 </Project>

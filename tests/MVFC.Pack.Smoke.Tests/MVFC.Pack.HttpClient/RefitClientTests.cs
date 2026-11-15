@@ -1,4 +1,4 @@
-﻿namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.IoC;
+namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.HttpClient;
 
 public interface ISampleApi
 {

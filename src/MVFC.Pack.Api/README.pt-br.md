@@ -1,4 +1,4 @@
-﻿# MVFC.Pack.Api
+# MVFC.Pack.Api
 
 > 🇺🇸 [Read in English](README.md) · [← Voltar ao MVFC.Pack](../../README.md)
 
@@ -66,11 +66,11 @@ app.UseAuthorization();
 | Serilog.AspNetCore | 10.0.0 |
 | Serilog.Sinks.File | 7.0.0 |
 | Serilog.Sinks.Console | 6.1.1 |
-| Microsoft.AspNetCore.OpenApi | 10.0.3 |
-| Microsoft.AspNetCore.Authentication.JwtBearer | 10.0.3 |
-| Asp.Versioning.Http | 8.1.1 |
+| Microsoft.AspNetCore.OpenApi | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Microsoft.AspNetCore.Authentication.JwtBearer | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
+| Asp.Versioning.Http | 10.2.3 |
 | AspNetCore.Scalar | 1.2.0 |
-| Microsoft.Extensions.Diagnostics.HealthChecks | 10.0.3 |
+| Microsoft.Extensions.Diagnostics.HealthChecks | 9.0.2 (net9) / 10.0.14 (net10) / 11.0.0 (net11) |
 | AspNetCore.HealthChecks.UI.Client | 9.0.0 |
 
 ## Licença

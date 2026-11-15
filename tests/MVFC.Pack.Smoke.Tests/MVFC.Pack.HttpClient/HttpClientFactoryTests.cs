@@ -1,6 +1,6 @@
-﻿namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.IoC;
+namespace MVFC.Pack.Smoke.Tests.MVFC.Pack.HttpClient;
 
-public sealed class RefitHttpClientFactoryTests
+public sealed class HttpClientFactoryTests
 {
     [Fact]
     public void HttpClientFactory_Should_Register_And_Resolve()
